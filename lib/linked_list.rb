@@ -23,19 +23,13 @@ class LinkedList
 	end
 
 	def prepend(node)
-		if self.head.nil?
-			self.head = node
-		else
-			node.next_node = self.head
-			self.head = node
-		end
+		node.next_node = self.head
+		self.head = node
 	end
 
 	def delete_head
 		if self.head.nil?
 			return
-		elsif !self.head.next_node
-			self.head = nil
 		else
 			self.head = self.head.next_node
 		end
@@ -46,15 +40,15 @@ class LinkedList
 			return
 		elsif !self.head.next_node
 			self.head = nil
-		else
-			
-			second_to_last = self.head
-			while second_to_last.next_node.next_node
-				second_to_last = second_to_last.next_node
-			end
-
-			second_to_last.next_node = nil
+			return
 		end
+			
+		last_node = self.head
+		while last_node.next_node
+			last_node = last_node.next_node
+		end
+
+		last_node.next_node = nil
 	end
 
 	def add_after(index, node)
